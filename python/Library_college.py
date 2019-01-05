@@ -1,5 +1,9 @@
 
 from selenium import webdriver
+import json
+
+with open('data.txt') as json_file:
+    data = json.load(json_file)
 
 browser = webdriver.Firefox()
 
@@ -8,11 +12,11 @@ browser.get('http://14.139.108.229/W27/login.aspx?ReturnUrl=%2fw27%2fMyInfo%2fw2
 
 #selecting and filling username
 elem = browser.find_element_by_css_selector('#txtUserName')
-elem.send_keys('17158')
+elem.send_keys(data['username'])
 
 #selecting and filling password
 elemp = browser.find_element_by_css_selector('#Password1')
-elemp.send_keys('shailesh') #singh1998
+elemp.send_keys(data['password'])
 
 #entering the page by clicking submit button
 logb = browser.find_element_by_css_selector('#Submit1')
