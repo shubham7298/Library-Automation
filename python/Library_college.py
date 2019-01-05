@@ -1,7 +1,19 @@
 
 from selenium import webdriver
 import json
+import os
 
+#if using for first time
+if(os.path.isfile('./data.txt')==False):
+    print("It's your first time....")
+    username=input('Enter username:-')
+    password=input('Enter password:-')
+    data={'username':username,
+            'password':password}
+    with open('data.txt','w') as outfile:
+        json.dump(data,outfile)
+
+#opening data file which contains username and password
 with open('data.txt') as json_file:
     data = json.load(json_file)
 
