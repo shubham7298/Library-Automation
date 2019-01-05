@@ -43,7 +43,7 @@ await page.click(BUTTON_SELECTOR);
 //await page.goto('http://14.139.108.229/w27/MyInfo/w27MyInfo.aspx');
 //console.log(' i am here 2');
 
-await page.screenshot({path: '123lib23.png'});
+//await page.screenshot({path: '123lib23.png'});
 
 /*
 let ht = await page.evaluate(el => el.innerHTML, await page.$('#lblMsg'))
