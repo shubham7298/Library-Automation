@@ -2,7 +2,9 @@
 
 ##features
 ->Automatically reissues the book if today is the due date of returning the book
+
 ->can be run from terminal from anywhere
+
 ->username and password have to be entered at first run only
 
 ##installation
@@ -22,4 +24,3 @@ run reissue command
 `reissue`
 
 >Fine evaded is the money earned
- 
