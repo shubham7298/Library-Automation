@@ -23,6 +23,7 @@ with open('data.json') as json_file:
     data = json.load(json_file)
 
 browser = webdriver.Firefox()
+browser.set_window_size(0,0)
 
 #opening library login page
 browser.get('http://14.139.108.229/W27/login.aspx?ReturnUrl=%2fw27%2fMyInfo%2fw27MyInfo.aspx') 
