@@ -2,12 +2,17 @@
 from selenium import webdriver
 import json
 import os
+import sys
 
 #if using for first time
 if(os.path.isfile('./data.json')==False):
     print("It's your first time....")
-    username=input('Enter username(reg. no.):-')
-    password=input('Enter password:-')
+    if sys.version_info[0] < 3:
+    	username=raw_input('Enter username(reg. no.):-')
+    	password=raw_input('Enter password:-')
+    else:
+    	username=input('Enter username(reg. no.):-')
+    	password=input('Enter password:-')
     data={'username':username,
             'password':password}
     with open('data.json','w') as outfile:
@@ -50,6 +55,11 @@ reissue_btn = []
 for i in range(no_of_books):
     reissue_btn.append(browser.find_element_by_css_selector('#ctl00_ContentPlaceHolder1_CtlMyLoans1_grdLoans_ctl0'+str(i+2)+'_Button1'))
 
+#making list of books
+book = []
+for i in range(no_of_books):
+    book.append(browser.find_element_by_css_selector('#ctl00_ContentPlaceHolder1_CtlMyLoans1_grdLoans_ctl0'+str(i+2)+'_lnkTitle'))
+
 #to get today's date
 import datetime
 today = datetime.date.today()
@@ -65,8 +75,13 @@ if no_of_books is not 0:
         if int(d[2]) == today.year:
             if months[d[1]] == today.month:
                 if int(d[0]) == today.day:
-                    reissue_btn[i].click()
+                    if(reissue_btn[i].is_enabled()):
+                        reissue_btn[i].click()
+                    else:
+                        print('RETURN NEEDED !!!')
+                        print('You need to return ""'+book[i].text+'"" today. ')
 
-#closig browser/webdriver
+#closing browser/webdriver
 browser.close()
+print('THANK YOU')
 
