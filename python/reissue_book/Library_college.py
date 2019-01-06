@@ -6,38 +6,63 @@ import json
 import os
 import sys
 
+def user_auth():
+	if sys.version_info[0] < 3:
+		username=raw_input('Enter username(reg. no.):-')
+		password=raw_input('Enter password:-')
+	else:
+		username=input('Enter username(reg. no.):-')
+		password=input('Enter password:-')
+	data={'username':username,
+            'password':password}
+	with open('data.json','w') as outfile:
+		json.dump(data,outfile)
+
 #if using for first time
 if(os.path.isfile('./data.json')==False):
     print("It's your first time....")
-    username=input('Enter username(reg. no.):-')
-    password=getpass.getpass('Enter password:-')
-    data={'username':username,
-            'password':password}
-    with open('data.json','w') as outfile:
-        json.dump(data,outfile)
-
-#opening data file which contains username and password
-with open('data.json') as json_file:
-    data = json.load(json_file)
+    user_auth()
 
 browser = webdriver.Firefox()
 browser.set_window_size(0,0)
 
 #opening library login page
-browser.get('http://14.139.108.229/W27/login.aspx?ReturnUrl=%2fw27%2fMyInfo%2fw27MyInfo.aspx') 
+url = 'http://14.139.108.229/W27/login.aspx?ReturnUrl=%2fw27%2fMyInfo%2fw27MyInfo.aspx'
+browser.get(url) 
 
-#selecting and filling username
-elem = browser.find_element_by_css_selector('#txtUserName')
-elem.send_keys(data['username'])
+attempts = 2
+while attempts:
+	#relogin
+	if attempts is not 2:
+		user_auth()
+		
+	#opening data file which contains username and password
+	with open('data.json') as json_file:
+		data = json.load(json_file)
+    
+	#selecting and filling username
+	elem = browser.find_element_by_css_selector('#txtUserName')
+	elem.send_keys(data['username'])
 
-#selecting and filling password
-elemp = browser.find_element_by_css_selector('#Password1')
-elemp.send_keys(data['password'])
+	#selecting and filling password
+	elemp = browser.find_element_by_css_selector('#Password1')
+	elemp.send_keys(data['password'])
 
-#entering the page by clicking submit button
-logb = browser.find_element_by_css_selector('#Submit1')
-#print(logb)
-logb.click()
+	#entering the page by clicking submit button
+	logb = browser.find_element_by_css_selector('#Submit1')
+	#print(logb)
+	logb.click()
+	if browser.current_url == url:
+		attempts = attempts-1
+		browser.find_element_by_css_selector('#txtUserName').clear()
+		os.remove('data.json')
+		if attempts is 0:
+			print('Wrong UserName or Password')
+			browser.close()
+			sys.exit()
+		print(' Try Re-Login ')
+	else:
+		break
 
 #finding and printing no. of books
 no_of_book = browser.find_element_by_css_selector('#ctl00_ContentPlaceHolder1_CtlMyLoans1_lblItems')
