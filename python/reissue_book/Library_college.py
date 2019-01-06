@@ -1,5 +1,7 @@
 
 from selenium import webdriver
+from builtins import input
+import getpass
 import json
 import os
 import sys
@@ -7,12 +9,8 @@ import sys
 #if using for first time
 if(os.path.isfile('./data.json')==False):
     print("It's your first time....")
-    if sys.version_info[0] < 3:
-    	username=raw_input('Enter username(reg. no.):-')
-    	password=raw_input('Enter password:-')
-    else:
-    	username=input('Enter username(reg. no.):-')
-    	password=input('Enter password:-')
+    username=input('Enter username(reg. no.):-')
+    password=getpass.getpass('Enter password:-')
     data={'username':username,
             'password':password}
     with open('data.json','w') as outfile:
@@ -23,6 +21,7 @@ with open('data.json') as json_file:
     data = json.load(json_file)
 
 browser = webdriver.Firefox()
+browser.set_window_size(0,0)
 
 #opening library login page
 browser.get('http://14.139.108.229/W27/login.aspx?ReturnUrl=%2fw27%2fMyInfo%2fw27MyInfo.aspx') 
