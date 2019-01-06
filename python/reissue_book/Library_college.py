@@ -1,6 +1,7 @@
 
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException
+from builtins import input
+import getpass
 import json
 import os
 import sys
@@ -23,6 +24,8 @@ if(os.path.isfile('./data.json')==False):
     user_auth()
 
 browser = webdriver.Firefox()
+browser.set_window_size(0,0)
+
 #opening library login page
 url = 'http://14.139.108.229/W27/login.aspx?ReturnUrl=%2fw27%2fMyInfo%2fw27MyInfo.aspx'
 browser.get(url) 
