@@ -1,3 +1,4 @@
 node/node_modules/
 node/creds.js
 python/data.txt
+python/reissue_book/geckodriver.log
