@@ -2,12 +2,17 @@
 from selenium import webdriver
 import json
 import os
+import sys
 
 #if using for first time
 if(os.path.isfile('./data.json')==False):
     print("It's your first time....")
-    username=input('Enter username(reg. no.):-')
-    password=input('Enter password:-')
+    if sys.version_info[0] < 3:
+    	username=raw_input('Enter username(reg. no.):-')
+    	password=raw_input('Enter password:-')
+    else:
+    	username=input('Enter username(reg. no.):-')
+    	password=input('Enter password:-')
     data={'username':username,
             'password':password}
     with open('data.json','w') as outfile:
