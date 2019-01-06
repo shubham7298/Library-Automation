@@ -1,10 +1,12 @@
 
 from selenium import webdriver
+from selenium.webdriver.firefox.options import Options
 from builtins import input
 import getpass
 import json
 import os
 import sys
+
 
 def user_auth():
 	username=input('Enter username(reg. no.):-')
@@ -19,7 +21,10 @@ if(os.path.isfile('./data.json')==False):
     print("It's your first time....")
     user_auth()
 
-browser = webdriver.Firefox()
+#opening headless firefox
+options = Options()
+options.headless = True
+browser = webdriver.Firefox(options=options)
 browser.set_window_size(0,0)
 
 #opening library login page
