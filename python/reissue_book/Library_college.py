@@ -7,12 +7,8 @@ import os
 import sys
 
 def user_auth():
-	if sys.version_info[0] < 3:
-		username=raw_input('Enter username(reg. no.):-')
-		password=raw_input('Enter password:-')
-	else:
-		username=input('Enter username(reg. no.):-')
-		password=input('Enter password:-')
+	username=input('Enter username(reg. no.):-')
+	password=getpass.getpass('Enter password:-')
 	data={'username':username,
             'password':password}
 	with open('data.json','w') as outfile:
