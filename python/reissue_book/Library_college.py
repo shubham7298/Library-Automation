@@ -6,13 +6,18 @@ import getpass
 import json
 import os
 import sys
+from mailer import send
 
-
+#reading and saving user's information for authentication
 def user_auth():
 	username=input('Enter username(reg. no.):-')
 	password=getpass.getpass('Enter password:-')
+	email=input('Enter your email address:-')
+	emailpass=getpass.getpass('Enter email password:-')
 	data={'username':username,
-            'password':password}
+            'password':password,
+            'email':email,
+            'emailpass':emailpass}
 	with open('data.json','w') as outfile:
 		json.dump(data,outfile)
 
@@ -105,6 +110,8 @@ if no_of_books is not 0:
                     else:
                         print('RETURN NEEDED !!!')
                         print('You need to return ""'+book[i].text+'"" today. ')
+                        #function to send self-reminder in user's email
+                        send() 
 
 #closing browser/webdriver
 browser.close()
