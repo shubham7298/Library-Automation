@@ -1,7 +1,8 @@
-#!/usr/bin/env bash
-echo "Run this command as sudo.";
+#!/bin/bash
 sudo cp -r reissue_book /usr/bin/;
 sudo cp reissue /usr/bin/;
-sudo chmod 777 /usr/bin/reissue;
+sudo chmod 755 /usr/bin/reissue;
 sudo pip3 install selenium;
-echo "Done";
+echo "#################################"
+echo "Library Automation tool successfully installed";
+echo "Type 'reissue' anywhere on terminal screeen :)"

@@ -1,21 +1,29 @@
 # library book reissue automation
 
-## features
--> Automatically reissues the book if today is the due date of returning the book
+## FEATURES
+* Automatically reissues the book if today is the due date of returning the book
 
--> can be run from terminal from anywhere
+* can be run from terminal from anywhere
 
--> username and password have to be entered at first run only
+* username and password have to be entered at first run only
 
-## Installation
+## INSTALLATION
 
-clone the repository and run terminal inside the repository
+Either clone or download the repository.
+
+to clone
+
+`git clone https://github.com/shubham7298/Library-Automation`
+
+enter the repository
+
+`cd Library-Automation`
 
 run installation file
 
-`bash install`
+`sudo bash install`
 
-##running
+## RUNNING
 
 open terminal anywhere 
 
