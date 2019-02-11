@@ -1,4 +1,4 @@
-
+#!/usr/bin/python3
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from builtins import input
